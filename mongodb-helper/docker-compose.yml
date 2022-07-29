@@ -1,0 +1,37 @@
+services:
+  server:
+    image: thantmyat/docker-mern-server
+    container_name: docker-mern-server
+    restart: always
+    ports:
+      - '8000:8000'
+    links:
+      - mongo
+    stdin_open: true
+    tty: true
+    networks:
+      - app-network
+  client:
+    image: thantmyat/docker-mern-client
+    container_name: docker-mern-client
+    restart: always
+    ports:
+      - '3000:3000'
+    stdin_open: true
+    tty: true
+    environment:
+      - WATCHPACK_POLLING=true
+    networks:
+      - app-network
+  mongo:
+    image: mongo
+    container_name: docker-mern-mongo
+    hostname: mongo
+    restart: always
+    ports:
+      - '27017:27017'
+    networks:
+      - app-network
+networks:
+  app-network:
+    driver: bridge

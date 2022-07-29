@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  server:
+    build: 
+      context: ./server
+    ports:
+      - 8000:8000
+    volumes:
+      - ./server:/usr/src/app/server
+      - /usr/src/app/server/node_modules
+    links:
+      - mongo
+  client:
+    build: 
+      context: ./client
+    ports:
+      - 3000:3000
+    volumes:
+      - ./client:/usr/src/app/client
+      - /usr/src/app/client/node_modules
+    stdin_open: true
+    tty: true
+    environment:
+      - WATCHPACK_POLLING=true
+  mongo:
+    image: mongo
+    hostname: mongo
+    restart: always
+    ports:
+      - '27017:27017'
