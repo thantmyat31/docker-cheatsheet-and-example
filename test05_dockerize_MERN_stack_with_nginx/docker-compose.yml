@@ -1,0 +1,44 @@
+version: '3.8'
+services:
+  server-api:
+    container_name: docker-mern-server
+    restart: always
+    build: ./server
+    ports:
+      - 5000:5000
+    links:
+      - mongo
+    hostname: backend
+    networks:
+      - app-network
+  client-ui:
+    container_name: docker-mern-client
+    restart: always
+    build: ./client
+    ports:
+      - 3000:3000
+    hostname: frontend
+    networks:
+      - app-network
+  mongo:
+    hostname: mongo
+    restart: always
+    image: mongo
+    ports:
+      - 27017:27017
+    networks:
+      - app-network
+  nginx:
+    restart: always
+    depends_on:
+      - server-api
+      - client-ui
+    build:
+      context: ./nginx
+    ports:
+      - 8080:80
+    networks:
+      - app-network
+networks:
+  app-network:
+    driver: bridge

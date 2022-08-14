@@ -1,0 +1,24 @@
+version: "3.8"
+services:
+  api:
+    build: 
+      context: ./api
+    container_name: api_c
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./api:/usr/src/app/api
+      - /usr/src/app/api/node_modules
+  myblog:
+    build: 
+      context: ./myblog
+    container_name: myblog_c
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./myblog:/usr/src/app/myblog
+      - /usr/src/app/myblog/node_modules
+    stdin_open: true
+    tty: true
+    environment:
+      - WATCHPACK_POLLING=true

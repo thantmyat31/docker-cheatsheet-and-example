@@ -1,0 +1,15 @@
+.toast {
+    position:fixed;
+    top:20px;
+    right:20px;
+    background-color:#fff;
+    padding:30px;
+}
+
+.toast.success {
+    border-left:5px solid rgb(101, 214, 165);
+}
+
+.toast.error {
+    border-left:5px solid red;
+}

@@ -1,0 +1,39 @@
+.header {
+    height:80px;
+    width:100%;
+    background-color: var(--primary-color);
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    padding:0 70px;
+    box-shadow:0px 3px 7px 1px #bfbfbf;
+}
+
+.header .logo {
+    height:81px;
+}
+
+.header nav  a {
+    color:#fff;
+    text-transform:uppercase;
+    margin-left:30px;
+    font-size:14px;
+    padding:10px;
+}
+
+@media screen and (max-width:768px) {
+    .header {
+        padding:10px 15px;
+        height:auto;
+    }
+    .header nav a {
+        font-size:11px;
+        margin-left:5px;
+        padding:5px;
+    }
+    .header .logo {
+        height:50px;
+    }
+}
